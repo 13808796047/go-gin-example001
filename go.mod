@@ -4,6 +4,7 @@ go 1.13
 
 replace (
 	github.com/13808796047/go-gin-example/conf => ./conf
+	github.com/13808796047/go-gin-example/handlers => ./handlers
 	github.com/13808796047/go-gin-example/middleware => ./middleware
 	github.com/13808796047/go-gin-example/models => ./models
 	github.com/13808796047/go-gin-example/pkg/e => ./pkg/e
