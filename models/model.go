@@ -6,6 +6,7 @@ import (
 
 	"github.com/13808796047/go-gin-example/pkg/setting"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var db *gorm.DB
@@ -21,7 +22,7 @@ func init() {
 		err                                               error
 		dbType, dbName, user, password, host, tablePrefix string
 	)
-	sec, err := setting.Config.GetSection("database")
+	sec, err := setting.Conf.GetSection("database")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -33,7 +34,7 @@ func init() {
 	host = sec.Key("HOST").String()
 	tablePrefix = sec.Key("TABLE_PREFIX").String()
 	// 连接数据库
-	db, err = gorm.Open(dbType, fmt.Printf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local", user, password, host, dbName))
+	db, err = gorm.Open(dbType, fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local", user, password, host, dbName))
 	if err != nil {
 		log.Fatal(err)
 	}
